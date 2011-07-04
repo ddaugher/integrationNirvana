@@ -4,7 +4,7 @@ setting up Integration Nirvana
 
     - on OSX... I installed apache camel 2.7.2 @ /usr/bin/apache-camel-2.7.2
 
-1a. Apache Camel jar are located within the APACHE_CAMEL_HOME/lib/ directory
+1a. Apache Camel jar's are located within the APACHE_CAMEL_HOME/lib/ directory
 
 2.  Java Mail jar is already present in directory (integrationNirvana/lib/mail.jar)
 3.  Apache Camel Spring jar's are located within Apache Camel install (APACHE_CAMEL_HOME/lib/spring)
@@ -16,9 +16,9 @@ setting up Integration Nirvana
 
 Executing the Integration Nirvana demo
 
-The MailReaderWithCamel initiates the Camel Context and starts the process, execute this from within an IDE or
-command line.  The 'mailReader' will check the supplied email account every ten (10) seconds, retrieving all emails
-available at time of checking.  Putting all retreived emails into the 'incomingEmails' queue.
+The MailReaderWithCamel (contains main()), initiates the Camel Context and starts the process, execute this from 
+within an IDE or command line.  The 'mailReader' will check the supplied email account every ten (10) seconds, 
+retrieving all emails available at time of checking.  Putting all retreived emails into the 'incomingEmails' queue.
 
 The 'contentRouter' will retrieve messages from the 'incomingEmails' queue and route based on subject.
 
@@ -28,3 +28,7 @@ The 'event driven consumers' attached to these queue's will get/put message to '
 
 Messages received by the Processors will 'growl' notify received message
 
+------------
+
+The 'graffle' slides are located in the docs directory along with images (png) for the respective slides.  I will
+add the final slide presentation, both keynote (.key) and PDF (.pdf) after the final presentation.
