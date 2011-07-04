@@ -14,7 +14,7 @@ setting up Integration Nirvana
 
 ------------
 
-Exceuting the Integration Nirvana demo
+Executing the Integration Nirvana demo
 
 The MailReaderWithCamel initiates the Camel Context and starts the process, execute this from within an IDE or
 command line.  The 'mailReader' will check the supplied email account every ten (10) seconds, retrieving all emails
