@@ -5,6 +5,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
+
 import javax.jms.ConnectionFactory;
 
 public class MailReaderWithCamel {
@@ -22,8 +23,8 @@ public class MailReaderWithCamel {
         context.addRoutes(new RouteBuilder() {
             public void configure() {
 
-                // get email from imap server into the queue
-                from("imaps://imap.gmail.com?username=integrationnirvana@gmail.com&password=Eiswein11&delete=false&unseen=true&consumer.delay=10000").
+                // get email from imap server into the queue (polling consumer)
+                from("imaps://imap.gmail.com?username=integrationnirvana@gmail.com&password=xxxxxxxxx&delete=false&unseen=true&consumer.delay=10000").
                         process(new EmailProcessor()).
                         to("jms:incomingEmails");
 
@@ -32,15 +33,20 @@ public class MailReaderWithCamel {
                         .choice()
                         .when(header("Subject").contains("winner"))
                         .to("jms:topic:winnerEmails")
+                        .when(header("Subject").contains("filtered"))
+                        .to("jms:topic:filteredEmails")
                         .otherwise()
                         .to("jms:topic:normalEmails");
 
+                // durable topic consumer
                 from("jms:topic:normalEmails").to("jms:growl");
-                from("jms:topic:winnerEmails").to("jms:winner");
+                from("jms:topic:filteredEmails").to("jms:filtered");
+                from("jms:topic:winnerEmails").to("jms:winners");
 
-                // test that our route is working
+                // event based consumer -> route to Processor
                 from("jms:growl").process(new GrowlProcessor());
-                from("jms:winner").process(new WinnerProcessor());
+                from("jms:filtered").process(new FilteredProcessor());
+                from("jms:winners").process(new WinnerProcessor());
             }
         });
 

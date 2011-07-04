@@ -1,0 +1,30 @@
+setting up Integration Nirvana
+
+1.  install Apache Camel - http://camel.apache.org/download.html
+
+    - on OSX... I installed apache camel 2.7.2 @ /usr/bin/apache-camel-2.7.2
+
+1a. Apache Camel jar are located within the APACHE_CAMEL_HOME/lib/ directory
+
+2.  Java Mail jar is already present in directory (integrationNirvana/lib/mail.jar)
+3.  Apache Camel Spring jar's are located within Apache Camel install (APACHE_CAMEL_HOME/lib/spring)
+4.  Camel Mail jar is located with Apache Camel install (APACHE_CAMEL_HOME/lib/camel-mail-2.7.2.jar)
+5.  GrowlWrapper jar is already present in the directory (integrationNirvana/lib/growlwrapper.jar)
+    *** this wrapper will only work on OSX !
+
+------------
+
+Exceuting the Integration Nirvana demo
+
+The MailReaderWithCamel initiates the Camel Context and starts the process, execute this from within an IDE or
+command line.  The 'mailReader' will check the supplied email account every ten (10) seconds, retrieving all emails
+available at time of checking.  Putting all retreived emails into the 'incomingEmails' queue.
+
+The 'contentRouter' will retrieve messages from the 'incomingEmails' queue and route based on subject.
+
+The 'durable topic consumers' will retrieve messages from their respective topics and publish to downstream queues.
+
+The 'event driven consumers' attached to these queue's will get/put message to 'Processor'
+
+Messages received by the Processors will 'growl' notify received message
+

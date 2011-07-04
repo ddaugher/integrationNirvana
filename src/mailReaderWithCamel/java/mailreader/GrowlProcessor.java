@@ -11,7 +11,7 @@ public class GrowlProcessor implements Processor {
         System.out.println("growling message: " + from + " : " + subject);
 
         String NOTIFICATION = "Notificiation Received";
-        GrowlWrapper gw = new GrowlWrapper("Mail Reader", "GrowlProcessor", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
+        GrowlWrapper gw = new GrowlWrapper("My App", "Finder", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
         gw.notify(NOTIFICATION, from, subject);
     }
 }
