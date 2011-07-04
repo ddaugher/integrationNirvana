@@ -10,6 +10,10 @@ public class GrowlProcessor implements Processor {
         String from = exchange.getIn().getHeader("From").toString();
         System.out.println("growling message: " + from + " : " + subject);
 
+        sendGrowl(subject, from);
+    }
+
+    private void sendGrowl(String subject, String from) {
         String NOTIFICATION = "Notificiation Received";
         GrowlWrapper gw = new GrowlWrapper("My App", "Finder", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
         gw.notify(NOTIFICATION, from, subject);

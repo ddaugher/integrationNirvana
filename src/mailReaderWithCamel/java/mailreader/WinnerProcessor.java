@@ -11,6 +11,12 @@ public class WinnerProcessor implements Processor {
         String from = exchange.getIn().getHeader("From").toString();
         System.out.println("winner message received : " + from);
 
+        sendGrowl(counter, from);
+
+        MailReaderWithCamel.counter++;
+    }
+
+    private void sendGrowl(int counter, String from) {
         String NOTIFICATION = "Looking For a Winner";
         GrowlWrapper gw = new GrowlWrapper("MyApp", "VLC", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
         if (counter == 25) {
@@ -20,7 +26,5 @@ public class WinnerProcessor implements Processor {
             System.out.println("SORRY ! you are number - " + counter + " : " + from);
             gw.notify(NOTIFICATION, from, "NOT A WINNER! - " + counter);
         }
-
-        MailReaderWithCamel.counter++;
     }
 }

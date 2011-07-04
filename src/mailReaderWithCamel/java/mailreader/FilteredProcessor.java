@@ -10,8 +10,12 @@ public class FilteredProcessor implements Processor {
         String from = exchange.getIn().getHeader("From").toString();
         System.out.println("filtered message received : " + from + " : " + subject);
 
+        sendGrowl(subject, from);
+    }
+
+    private void sendGrowl(String subject, String from) {
         String NOTIFICATION = "Filtered Message Received";
         GrowlWrapper gw = new GrowlWrapper("MyApp", "Spirited Away", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
-            gw.notify(NOTIFICATION, from, subject);
+        gw.notify(NOTIFICATION, from, subject);
     }
 }
