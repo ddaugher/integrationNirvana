@@ -9,7 +9,7 @@ public class WinnerProcessor implements Processor {
         int counter = OrdeProcessingWithCamel.counter;
         String subject = exchange.getIn().getHeader("Subject").toString();
         String from = exchange.getIn().getHeader("From").toString();
-        System.out.println("winner message received : " + from);
+        System.out.println("winner message received : (" + System.nanoTime() + ") - " + from + " : " + subject);
 
         sendGrowl(counter, from);
 

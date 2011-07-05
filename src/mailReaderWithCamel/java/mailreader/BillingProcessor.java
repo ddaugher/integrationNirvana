@@ -8,7 +8,7 @@ public class BillingProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         String subject = exchange.getIn().getHeader("Subject").toString();
         String from = exchange.getIn().getHeader("From").toString();
-        System.out.println("receiving billing message: " + from + " : " + subject);
+        System.out.println("receiving billing message : (" + System.nanoTime() + ") - " + from + " : " + subject);
 
         sendGrowl(subject, from);
     }

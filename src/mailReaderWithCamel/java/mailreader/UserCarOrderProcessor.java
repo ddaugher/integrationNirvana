@@ -8,7 +8,7 @@ public class UserCarOrderProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         String subject = exchange.getIn().getHeader("Subject").toString();
         String from = exchange.getIn().getHeader("From").toString();
-        System.out.println("used car order received : " + from + " : " + subject);
+        System.out.println("used car order received : (" + System.nanoTime() + ") - " + from + " : " + subject);
 
         sendGrowl(subject, from);
     }

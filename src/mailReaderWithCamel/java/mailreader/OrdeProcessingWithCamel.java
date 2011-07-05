@@ -31,12 +31,12 @@ public class OrdeProcessingWithCamel {
 
                 // content-based router
                 from("jms:incomingOrders")
-                        .choice()
-                        .when(header("Subject").contains("winner"))
+                .choice()
+                    .when(header("Subject").contains("winner"))
                         .to("jms:topic:winner")
-                        .when(header("Subject").contains("new"))
+                    .when(header("Subject").contains("new"))
                         .to("jms:topic:newCarOrders")
-                        .otherwise()
+                    .otherwise()
                         .to("jms:topic:usedCarOrders");
 
                 // durable topic consumer
