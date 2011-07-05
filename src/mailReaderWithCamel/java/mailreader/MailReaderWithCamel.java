@@ -60,4 +60,3 @@ public class MailReaderWithCamel {
         context.stop();
     }
 }
-
