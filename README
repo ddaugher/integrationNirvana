@@ -24,7 +24,10 @@ The 'contentRouter' will retrieve messages from the 'incomingEmails' queue and r
 
 The 'durable topic consumers' will retrieve messages from their respective topics and publish to downstream queues.
 
-The 'event driven consumers' attached to these queue's will get/put message to 'Processor'
+The 'event driven consumers' consuming from these queue's will get/put messages to their appropriate 'Processor'
+  - jms:nonFiltered -> GrowlProcessor
+  - jms:filtered -> FilteredProcessor
+  - jms:winners -> WinnerProcessor
 
 Messages received by the Processors will 'growl' notify received message
 
