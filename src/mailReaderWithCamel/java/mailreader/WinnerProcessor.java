@@ -19,7 +19,7 @@ public class WinnerProcessor implements Processor {
     private void sendGrowl(int counter, String from) {
         String NOTIFICATION = "Looking For a Winner";
         GrowlWrapper gw = new GrowlWrapper("MyApp", "VLC", new String[]{NOTIFICATION}, new String[]{NOTIFICATION});
-        if (counter == 10) {
+        if (counter == 5) {
             System.out.println("CONGRATULATIONS ! you are the winner - " + counter + " : " + from);
             gw.notify(NOTIFICATION, from, "CONGRATULATIONS !!! You are the WINNER!");
         } else {

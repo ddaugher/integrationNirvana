@@ -10,7 +10,7 @@ import javax.jms.ConnectionFactory;
 
 public class OrderProcessingWithCamel {
 
-    public static int counter = 0;
+    public static int counter = 1;
 
     public static void main(String args[]) throws Exception {
         // create CamelContext
@@ -31,7 +31,6 @@ public class OrderProcessingWithCamel {
                 // durable topic consumer
 
                 // event based consumer -> route to Processor
-
             }
         });
 
